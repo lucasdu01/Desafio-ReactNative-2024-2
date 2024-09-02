@@ -1,7 +1,16 @@
 import { Image, Text, View, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { useState } from 'react';
 import { styles } from '../styles/gerenciamentoStyles';
 
 import TopBar from '../components/TopBar';
+
+import ModalAdd from '../modals/modalAdd';
+// import ModalView from '../modals/modalView';
+// import ModalEdit from '../modals/modalEdit';
+// import ModalDelete from '../modals/modalDelete';
+
+
+
 
 const data = [
   { id: '1', treino: 'Abdômen', criadoEm: '05/08/2024' },
@@ -32,27 +41,31 @@ const renderRow = ({ item }) => (
 );
 
 export default function App() {
+  const [modalVisible, setModalVisible] = useState(false);
+  
   return (
     <View style={styles.container}>
       <TopBar/>
-      <ScrollView>
-        <Text style={styles.title}>Gerenciamento</Text>
-        <TouchableOpacity>
-          <Image source={require('../../assets/images/iconsGerenciamento/iconAdd.png')} style={styles.buttonAdd}/>
-        </TouchableOpacity>
-        <FlatList
-          data={data}
-          renderItem={renderRow}
-          keyExtractor={(item) => item.id}
-          ListHeaderComponent={ () => (
-            <View style={styles.header}>
-              <Text style={styles.headerText}>TREINO</Text>
-              <Text style={styles.headerText}>CRIADO EM</Text>
-              <Text style={styles.headerText}>AÇÕES</Text>
-            </View>
-          )}
-        />
-      </ScrollView>
+      <Text style={styles.title}>Gerenciamento</Text>
+      <TouchableOpacity onPress={() => setModalVisible(true)}>
+        <Image source={require('../../assets/images/iconsGerenciamento/iconAdd.png')} style={styles.buttonAdd}/>
+      </TouchableOpacity>
+      <ModalAdd 
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+      <FlatList
+        data={data}
+        renderItem={renderRow}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={ () => (
+          <View style={styles.header}>
+            <Text style={styles.headerText}>TREINO</Text>
+            <Text style={styles.headerText}>CRIADO EM</Text>
+            <Text style={styles.headerText}>AÇÕES</Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
