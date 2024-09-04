@@ -1,8 +1,15 @@
 import React from 'react';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/loginStyles';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type TabParamList = {
+  Main: undefined;
+};
 
 export default function LoginScreen() {
+  const navigationHome = useNavigation<StackNavigationProp<TabParamList, 'Main'>>();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
@@ -24,7 +31,7 @@ export default function LoginScreen() {
         secureTextEntry 
       />
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={ () => navigationHome.navigate('Main') }>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
     </View>
