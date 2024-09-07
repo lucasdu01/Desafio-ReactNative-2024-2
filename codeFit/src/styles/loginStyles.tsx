@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#6E028C',
   },
   button: {
-    width: '50%',
+    width: '60%',
     height: 80,
     backgroundColor: '#FFCE07',
     justifyContent: 'center',
@@ -42,6 +42,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
+    padding: 10,
     fontSize: 40,
     color: '#3B1B4D',
     fontWeight: 'bold',
@@ -64,10 +65,9 @@ export const styles = StyleSheet.create({
     color: '#FFF',
   },
   eyeIcon: {
-    width: 24,   // Largura do ícone de olho
-    height: 24,  // Altura do ícone de olho
-    tintColor: '#white', // Cor do ícone, pode ser ajustada conforme o tema
-
+    width: 24,
+    height: 24,
+    tintColor: '#FFCE07'
   },
 });
   

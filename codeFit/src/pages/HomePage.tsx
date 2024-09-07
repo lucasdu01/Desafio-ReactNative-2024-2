@@ -1,7 +1,10 @@
-import { Text, View, Image, ScrollView } from 'react-native';
+import { useState, useEffect } from 'react';
+import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/homeStyles';
+import { getTreinos } from '../services/treinoServices';
 
 import TopBar from '../components/TopBar';
+import ModalView from '../modals/modalView';
 
 export default function App() {
   return (

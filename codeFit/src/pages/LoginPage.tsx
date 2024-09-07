@@ -5,7 +5,7 @@ import { Text, View, TextInput, TouchableOpacity, Alert, Image } from 'react-nat
 import { styles } from '../styles/loginStyles';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { getUser, verificaExisteUser } from '../services/userServices';
+import { verificaExisteUser } from '../services/userServices';
 
 type TabParamList = {
   Main: undefined;
@@ -62,16 +62,15 @@ export default function LoginScreen() {
           style={styles.inputSenha} 
           placeholder="Senha" 
           placeholderTextColor="#FFF"
-          secureTextEntry={!mostrarSenha} // Alterna a visibilidade da senha
+          secureTextEntry={!mostrarSenha}
           value={senha} 
           onChangeText={text => setSenha(text)}
         />
         <TouchableOpacity onPress={() => setMostrarSenha(!mostrarSenha)}>
           <Image 
             style={styles.eyeIcon}
-            source={mostrarSenha ? require('../../assets/images/iconsLogin/eyeOff.png') : require('../../assets/images/iconsLogin/eyeOn.png')} 
-              
-            />
+            source={mostrarSenha ? require('../../assets/images/iconsLogin/eyeOff.png') : require('../../assets/images/iconsLogin/eyeOn.png')}
+          />
         </TouchableOpacity>
       </View>
 
