@@ -26,7 +26,7 @@ export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicio
     };
     try {
       await createTreino(novoTreino);
-      onTreinoAdicionado(novoTreino);
+      await onTreinoAdicionado(novoTreino);
       setModalVisible(false);  
     } catch (error) {
       alert('Falha ao criar treino. Tente novamente.');

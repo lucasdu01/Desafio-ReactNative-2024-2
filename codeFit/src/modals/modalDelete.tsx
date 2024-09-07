@@ -11,7 +11,7 @@ type ModalDeleteProps = {
 };
 
 export default function ModalDelete({ modalVisible, setModalVisible, treino, onTreinoRemovido }: ModalDeleteProps) {
-    const handleDelete = () => {
+    const handleDelete = async () => {
         const atualTreino = {
             id: treino.id,
             type: treino.tipo,
@@ -20,10 +20,15 @@ export default function ModalDelete({ modalVisible, setModalVisible, treino, onT
             time: treino.tempo,
             du_user_id: 1,
         };
-        deleteTreino(atualTreino);
-        onTreinoRemovido(atualTreino);
-        setModalVisible(false);
-      };
+        try {
+            await deleteTreino(atualTreino);
+            await onTreinoRemovido(atualTreino);
+            setModalVisible(false);  
+          } catch (error) {
+            alert('Falha ao excluir treino. Tente novamente.');
+            console.error('Erro ao excluir treino:', error.message || error);
+          }
+        };
   return (
     <Modal
       transparent={true}

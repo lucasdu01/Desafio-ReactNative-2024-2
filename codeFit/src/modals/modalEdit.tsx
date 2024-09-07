@@ -26,7 +26,7 @@ export default function ModalEdit({ modalVisible, setModalVisible, treino, onTre
     }
   }, [treino]);
 
-  const editarTreino = () => {
+  const editarTreino = async () => {
     const atualTreino = {
       id: treino.id,
       type: tipo,
@@ -35,9 +35,14 @@ export default function ModalEdit({ modalVisible, setModalVisible, treino, onTre
       time: tempo,
       du_user_id: 1,
     };
-    updateTreino(atualTreino);
-    onTreinoEditado(atualTreino); 
-    setModalVisible(false);
+    try {
+      await updateTreino(atualTreino);
+      await onTreinoEditado(atualTreino);
+      setModalVisible(false);  
+    } catch (error) {
+      alert('Falha ao editar treino. Tente novamente.');
+      console.error('Erro ao editar treino:', error.message || error);
+    }
   };
   
   return (

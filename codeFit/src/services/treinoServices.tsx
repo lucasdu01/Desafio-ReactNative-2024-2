@@ -50,7 +50,6 @@ export async function createTreino(novoTreino) {
 };
 
 export async function updateTreino(atualTreino) {
-  console.log(atualTreino);
   try{
     const response = await fetch(`${API_URL}/training/${atualTreino.id}`, {
       method: 'PUT',
