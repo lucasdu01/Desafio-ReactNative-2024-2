@@ -16,7 +16,7 @@ export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicio
   const [tempo, setTempo] = useState('');
   const [video, setVideo] = useState('');
 
-  const criarTreino = () => {
+  const criarTreino = async () => {
     const novoTreino = {
       type: tipo,
       weight: carga,
@@ -25,12 +25,13 @@ export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicio
       du_user_id: 1,
     };
     try {
-      createTreino(novoTreino);
+      await createTreino(novoTreino);
       onTreinoAdicionado(novoTreino);
+      setModalVisible(false);  
     } catch (error) {
-      console.error("Erro ao criar treino:", error);
+      alert('Falha ao criar treino. Tente novamente.');
+      console.error('Erro ao criar treino:', error.message || error);
     }
-    setModalVisible(false);  
   };
   
   return (
