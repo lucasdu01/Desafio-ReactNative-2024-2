@@ -6,17 +6,16 @@ import { styles } from '../styles/modalStyles';
 type ModalViewProps = {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  treino: any;
 };
 
 
-export default function ModalView({ modalVisible, setModalVisible }: ModalViewProps) {
+export default function ModalView({ modalVisible, setModalVisible, treino }: ModalViewProps) {
   return (
     <Modal
       transparent={true}
       visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
+      onRequestClose={() => {setModalVisible(!modalVisible)}}
     >
     <View style={styles.modalBackground}>
       <View style={styles.modalLayout}>
@@ -32,11 +31,11 @@ export default function ModalView({ modalVisible, setModalVisible }: ModalViewPr
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Tipo:</Text>
-            <TextInput style={styles.input} placeholder="Digite o tipo" />
+            <TextInput style={styles.input} placeholder={treino.tipo}/>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Carga:</Text>
-            <TextInput style={styles.input} placeholder="Digite a carga" />
+            <TextInput editable={false} style={styles.input} placeholder={treino.carga}/>
           </View>
         </View>
         
@@ -44,11 +43,11 @@ export default function ModalView({ modalVisible, setModalVisible }: ModalViewPr
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Repetições:</Text>
-            <TextInput style={styles.input} placeholder="Digite as repetições" />
+            <TextInput editable={false} style={styles.input} placeholder={treino.repeticoes}/>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Tempo:</Text>
-            <TextInput style={styles.input} placeholder="Digite o tempo" />
+            <TextInput editable={false} style={styles.input} placeholder={treino.tempo}/>
           </View>
         </View>
         

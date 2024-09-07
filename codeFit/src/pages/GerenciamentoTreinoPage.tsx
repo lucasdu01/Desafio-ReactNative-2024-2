@@ -5,11 +5,12 @@ import { styles } from '../styles/gerenciamentoStyles';
 import TopBar from '../components/TopBar';
 import { getTreinos } from '../services/treinoServices';
 import { renderRow } from '../components/renderRow';
+import { updateTreino, deleteTreino } from '../services/treinoServices';
 
 import ModalAdd from '../modals/modalAdd';
 import ModalView from '../modals/modalView';
-// import ModalEdit from '../modals/modalEdit';
-// import ModalDelete from '../modals/modalDelete';
+import ModalEdit from '../modals/modalEdit';
+import ModalDelete from '../modals/modalDelete';
 
 export default function GerenciamentoTreino() {
   const [visibleModalAdd, setVisibleModalAdd] = useState(false)
@@ -17,6 +18,7 @@ export default function GerenciamentoTreino() {
   const [visibleModalEdit, setVisibleModalEdit] = useState(false)
   const [visibleModalDelete, setVisibleModalDelete] = useState(false)
   const [treinos, setTreinos] = useState([]);
+  const [treinoSelecionado, setTreinoSelecionado] = useState(null);
 
   const carregarTreinos = async () => {
     try {
@@ -30,7 +32,7 @@ export default function GerenciamentoTreino() {
   useEffect(() => {
     carregarTreinos();  // Carrega treinos ao montar o componente
   }, []);
- 
+  
   return (
     <View style={styles.container}>
       <TopBar/>
@@ -50,8 +52,8 @@ export default function GerenciamentoTreino() {
         data={treinos}
         renderItem={({ item }) =>
           renderRow({
-            item,
-            visibleModalView, setVisibleModalView,
+            item, setTreinoSelecionado, carregarTreinos,
+            visibleModalView, setVisibleModalView, 
             visibleModalEdit, setVisibleModalEdit,
             visibleModalDelete, setVisibleModalDelete,
           })}
@@ -64,6 +66,27 @@ export default function GerenciamentoTreino() {
           </View>
         )}
       />
+    {treinoSelecionado && (
+      <>
+        <ModalView
+          modalVisible={visibleModalView}
+          setModalVisible={setVisibleModalView}
+          treino={treinoSelecionado}
+        />
+        <ModalEdit
+          modalVisible={visibleModalEdit}
+          setModalVisible={setVisibleModalEdit}
+          treino={treinoSelecionado}
+          onTreinoEditado={carregarTreinos}
+        />
+        <ModalDelete
+          modalVisible={visibleModalDelete}
+          setModalVisible={setVisibleModalDelete}
+          treino={treinoSelecionado}
+          onTreinoRemovido={carregarTreinos}
+        />
+      </>
+      )}
     </View>
   );
 }

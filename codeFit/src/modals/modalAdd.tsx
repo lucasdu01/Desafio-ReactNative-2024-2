@@ -12,7 +12,7 @@ type ModalAddProps = {
 export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicionado }: ModalAddProps) {
   const [tipo, setTipo] = useState('');
   const [carga, setCarga] = useState('');
-  const [repet, setRepet] = useState('');
+  const [repeticoes, setRepeticoes] = useState('');
   const [tempo, setTempo] = useState('');
   const [video, setVideo] = useState('');
 
@@ -20,7 +20,7 @@ export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicio
     const novoTreino = {
       type: tipo,
       weight: carga,
-      repetitions: repet,
+      repetitions: repeticoes,
       time: tempo,
       du_user_id: 1,
     };
@@ -68,7 +68,7 @@ export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicio
           <View style={styles.inputRow}>
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Repetições:</Text>
-              <TextInput style={styles.input} placeholder="Digite as repetições" value={repet} onChangeText={text => setRepet(text)}/>
+              <TextInput style={styles.input} placeholder="Digite as repetições" value={repeticoes} onChangeText={text => setRepeticoes(text)}/>
             </View>
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Tempo:</Text>

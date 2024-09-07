@@ -15,8 +15,11 @@ export async function getTreinos() {
 
     const treinosProcessados = treinos.map((treino: any) => ({
       id: treino.id.toString(),
-      treino: treino.type,
+      tipo: treino.type,
       criadoEm: formatarData(treino.created_at),
+      carga: treino.weight,
+      repeticoes: treino.repetitions,
+      tempo: treino.time,
     }));
 
     return treinosProcessados;
@@ -37,11 +40,6 @@ export async function createTreino(novoTreino) {
       body: JSON.stringify(novoTreino),
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(`Erro: ${response.status} - ${errorData.message || 'Ocorreu um erro ao criar o treino'}`);
-    }  
-    
     const data = await response.json();
     return data;
 
@@ -49,7 +47,42 @@ export async function createTreino(novoTreino) {
     console.error('Erro na criação do treino:', error.message || error);
     throw error;
   }
+};
 
+export async function updateTreino(atualTreino) {
+  console.log(atualTreino);
+  try{
+    const response = await fetch(`${API_URL}/training/${atualTreino.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(atualTreino),
+    });    
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Erro na edição do treino:', error.message || error);
+    throw error;
+  }
+};
+
+export async function deleteTreino(atualTreino) {
+  try{
+    const response = await fetch(`${API_URL}/training/${atualTreino.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });    
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    console.error('Erro na edição do treino:', error.message || error);
+    throw error;
+  }
 };
 
 // Funcao para transformar a data no formato dd/mm/aaaa
