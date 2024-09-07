@@ -52,15 +52,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   videoContainer: {
-    marginTop: 20,
-    width: '100%',
-    height: 200, // Ajuste o tamanho conforme necessário
+    width: 300,
   },
-  webView: {
-    flex: 1,
-    borderRadius: 5,
-  },
-
   alertContainer: {
     flexDirection: 'column',
     alignItems: 'center',
@@ -100,5 +93,22 @@ export const styles = StyleSheet.create({
   noButtonText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
+  },
+  confirmaButtonContainer:{
+    backgroundColor: 'black',
+    margin: 0,
+  },
+  confirmaButton: {
+    backgroundColor: '#3B1B4D', 
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 20,
+    borderWidth: 1,
+  },
+  confirmaButtonText: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });
