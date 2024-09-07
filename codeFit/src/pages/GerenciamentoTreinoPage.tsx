@@ -1,11 +1,9 @@
 import { Image, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { useState, useEffect } from 'react';
 import { styles } from '../styles/gerenciamentoStyles';
-
-import TopBar from '../components/TopBar';
 import { getTreinos } from '../services/treinoServices';
 import { renderRow } from '../components/renderRow';
-import { updateTreino, deleteTreino } from '../services/treinoServices';
+import TopBar from '../components/TopBar';
 
 import ModalAdd from '../modals/modalAdd';
 import ModalView from '../modals/modalView';

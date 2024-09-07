@@ -46,5 +46,28 @@ export const styles = StyleSheet.create({
     color: '#3B1B4D',
     fontWeight: 'bold',
   },
+  passwordContainer: {
+    flexDirection: 'row', // Alinha os itens horizontalmente
+    alignItems: 'center',
+    width: '80%',
+    height: 40,
+    borderColor: '#FFCE07',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 20,
+    paddingLeft: 10,
+    color: 'white',
+    backgroundColor: '#6E028C',
+  },
+  inputSenha: {
+    width: '90%',
+    color: '#FFF',
+  },
+  eyeIcon: {
+    width: 24,   // Largura do ícone de olho
+    height: 24,  // Altura do ícone de olho
+    tintColor: '#white', // Cor do ícone, pode ser ajustada conforme o tema
+
+  },
 });
   
