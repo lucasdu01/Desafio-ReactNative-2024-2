@@ -11,6 +11,9 @@ type ModalViewProps = {
 
 
 export default function ModalView({ modalVisible, setModalVisible, treino }: ModalViewProps) {
+  if (!treino) {
+    return null; // Não renderize o modal se `treino` for inválido
+  }
   return (
     <Modal
       transparent={true}
