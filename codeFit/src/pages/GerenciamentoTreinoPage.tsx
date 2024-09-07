@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { styles } from '../styles/gerenciamentoStyles';
 
 import TopBar from '../components/TopBar';
-import { data } from '../components/data';
+import { loadTrainings } from '../services/loadTreinos';
 import { renderRow } from '../components/renderRow';
 
 import ModalAdd from '../modals/modalAdd';
@@ -16,6 +16,12 @@ export default function GerenciamentoTreino() {
   const [visibleModalView, setVisibleModalView] = useState(false)
   const [visibleModalEdit, setVisibleModalEdit] = useState(false)
   const [visibleModalDelete, setVisibleModalDelete] = useState(false)
+
+  //Carregar treinos na tela
+  const { data, loading, error } = loadTrainings();
+  if (loading) return <Text>Loading...</Text>;
+  if (error) return <Text>{error}</Text>;
+ 
   return (
     <View style={styles.container}>
       <TopBar/>
