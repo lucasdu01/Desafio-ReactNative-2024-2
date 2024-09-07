@@ -1,26 +1,26 @@
-export const fetchTreinos = async () => {
+import { API_URL } from "./apiConfig";
+
+// GET TREINOS
+export async function fetchTreinos() {
   try {
-    const fetchUser = await fetch('https://treinamentoapi.codejr.com.br/api/du/user/1', {
+    const fetchUser = await fetch(`${API_URL}/user/1`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    if (!fetchUser.ok) {
-      throw new Error(`Erro: ${fetchUser.status} - ${fetchUser.statusText}`);
-    }
+    const dadosUsuario = await fetchUser.json();
+    const treinos = dadosUsuario.trainings;
 
-    const dados = await fetchUser.json();
-    const treinos = dados.trainings;
-
-    const formattedTreinos = treinos.map((treino: any) => ({
+    const treinosProcessados = treinos.map((treino: any) => ({
       id: treino.id.toString(),
       treino: treino.type,
       criadoEm: formatarData(treino.created_at),
     }));
 
-    return formattedTreinos;
+    return treinosProcessados;
+
   } catch (error) {
     console.error('Erro ao buscar os dados:', error);
     return [];

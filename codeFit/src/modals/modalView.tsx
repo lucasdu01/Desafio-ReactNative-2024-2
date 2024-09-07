@@ -8,10 +8,10 @@ type ModalViewProps = {
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+
 export default function ModalView({ modalVisible, setModalVisible }: ModalViewProps) {
   return (
     <Modal
-      animationType="slide"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
@@ -28,7 +28,7 @@ export default function ModalView({ modalVisible, setModalVisible }: ModalViewPr
         </TouchableOpacity>
         <Text style={styles.modalTitle}>Treino</Text>
         
-        {/* View para alinhar Tipo e Carga lado a lado */}
+        {/* Tipo e Carga */}
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Tipo:</Text>
@@ -40,7 +40,7 @@ export default function ModalView({ modalVisible, setModalVisible }: ModalViewPr
           </View>
         </View>
         
-        {/* View para alinhar Repetições e Tempo lado a lado */}
+        {/* Repeticoes e Tempo */}
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Repetições:</Text>
@@ -52,7 +52,7 @@ export default function ModalView({ modalVisible, setModalVisible }: ModalViewPr
           </View>
         </View>
         
-        {/* Espaço para o vídeo */}
+        {/* Vídeo */}
         <View style={styles.videoContainer}>
           <Text style={styles.label}>Vídeo:</Text>
 

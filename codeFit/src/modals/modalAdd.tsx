@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { loadTrainings } from '../services/loadTreinos';
 
 import { styles } from '../styles/modalStyles';
 
@@ -17,7 +16,6 @@ export default function ModalAdd({ modalVisible, setModalVisible }: ModalAddProp
   const [video, setVideo] = useState('');
 
   const criarTreino = () => {
-  
     const novoTreino = {
       type: tipo,
       weight: carga,
@@ -27,7 +25,6 @@ export default function ModalAdd({ modalVisible, setModalVisible }: ModalAddProp
     };
 
     fetchCreate(novoTreino);
-    
   };
   
   const fetchCreate = async (novoTreino) => {
@@ -37,13 +34,11 @@ export default function ModalAdd({ modalVisible, setModalVisible }: ModalAddProp
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(novoTreino),
-    });
-    
-};
+    });  
+  };
 
   return (
     <Modal
-      animationType="slide"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {

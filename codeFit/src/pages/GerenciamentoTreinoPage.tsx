@@ -1,9 +1,9 @@
 import { Image, Text, View, TouchableOpacity, FlatList } from 'react-native';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { styles } from '../styles/gerenciamentoStyles';
 
 import TopBar from '../components/TopBar';
-import { loadTrainings } from '../services/loadTreinos';
+import { fetchTreinos } from '../services/treinoServices';
 import { renderRow } from '../components/renderRow';
 
 import ModalAdd from '../modals/modalAdd';
@@ -17,10 +17,19 @@ export default function GerenciamentoTreino() {
   const [visibleModalEdit, setVisibleModalEdit] = useState(false)
   const [visibleModalDelete, setVisibleModalDelete] = useState(false)
 
-  //Carregar treinos na tela
-  const { data, loading, error } = loadTrainings();
-  if (loading) return <Text>Loading...</Text>;
-  if (error) return <Text>{error}</Text>;
+  const [treinos, setTreinos] = useState([]);
+  useEffect(() => {
+    const carregarTreinos = async () => {
+      try {
+        const response = await fetchTreinos();
+        setTreinos(response);
+      } catch (error) {
+        console.error("Erro ao carregar treinos:", error);
+      }
+    };
+  
+    carregarTreinos();
+  }, []);
  
   return (
     <View style={styles.container}>
@@ -37,7 +46,7 @@ export default function GerenciamentoTreino() {
       />
 
       <FlatList
-        data={data}
+        data={treinos}
         renderItem={({ item }) =>
           renderRow({
             item,
