@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { styles } from '../styles/gerenciamentoStyles';
 
 import TopBar from '../components/TopBar';
-import { fetchTreinos } from '../services/treinoServices';
+import { getTreinos } from '../services/treinoServices';
 import { renderRow } from '../components/renderRow';
 
 import ModalAdd from '../modals/modalAdd';
@@ -16,19 +16,19 @@ export default function GerenciamentoTreino() {
   const [visibleModalView, setVisibleModalView] = useState(false)
   const [visibleModalEdit, setVisibleModalEdit] = useState(false)
   const [visibleModalDelete, setVisibleModalDelete] = useState(false)
-
   const [treinos, setTreinos] = useState([]);
+
+  const carregarTreinos = async () => {
+    try {
+      const response = await getTreinos();
+      setTreinos(response);
+    } catch (error) {
+      console.error("Erro ao carregar treinos:", error);
+    }
+  };
+
   useEffect(() => {
-    const carregarTreinos = async () => {
-      try {
-        const response = await fetchTreinos();
-        setTreinos(response);
-      } catch (error) {
-        console.error("Erro ao carregar treinos:", error);
-      }
-    };
-  
-    carregarTreinos();
+    carregarTreinos();  // Carrega treinos ao montar o componente
   }, []);
  
   return (
@@ -43,6 +43,7 @@ export default function GerenciamentoTreino() {
       <ModalAdd 
         modalVisible={visibleModalAdd}
         setModalVisible={setVisibleModalAdd}
+        onTreinoAdicionado={carregarTreinos}
       />
 
       <FlatList

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
-
+import { createTreino } from '../services/treinoServices';
 import { styles } from '../styles/modalStyles';
 
 type ModalAddProps = {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onTreinoAdicionado: (novoTreino: any) => void;
 };
 
-export default function ModalAdd({ modalVisible, setModalVisible }: ModalAddProps) {
+export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicionado }: ModalAddProps) {
   const [tipo, setTipo] = useState('');
   const [carga, setCarga] = useState('');
   const [repet, setRepet] = useState('');
@@ -23,20 +24,15 @@ export default function ModalAdd({ modalVisible, setModalVisible }: ModalAddProp
       time: tempo,
       du_user_id: 1,
     };
-
-    fetchCreate(novoTreino);
+    try {
+      createTreino(novoTreino);
+      onTreinoAdicionado(novoTreino);
+    } catch (error) {
+      console.error("Erro ao criar treino:", error);
+    }
+    setModalVisible(false);  
   };
   
-  const fetchCreate = async (novoTreino) => {
-    const response = await fetch('https://treinamentoapi.codejr.com.br/api/du/training', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(novoTreino),
-    });  
-  };
-
   return (
     <Modal
       transparent={true}
