@@ -37,7 +37,7 @@ export default function ModalView({ modalVisible, setModalVisible, treino }: Mod
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Tipo:</Text>
-            <TextInput style={styles.input} placeholder={treino.tipo}/>
+            <TextInput editable={false} style={styles.input} placeholder={treino.tipo}/>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Carga:</Text>
