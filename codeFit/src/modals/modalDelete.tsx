@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { deleteTreino } from '../services/treinoServices';
 import { styles } from '../styles/modalStyles';
+import { deleteTreino } from '../services/treinoServices';
+
 
 type ModalDeleteProps = {
   modalVisible: boolean;

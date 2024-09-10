@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { updateTreino } from '../services/treinoServices';
 import { styles } from '../styles/modalStyles';
+import { updateTreino } from '../services/treinoServices';
+
 
 type ModalEditProps = {
   modalVisible: boolean;

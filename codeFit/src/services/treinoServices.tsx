@@ -30,6 +30,7 @@ export async function getTreinos() {
   }  
 };
 
+// CRIA TREINO
 export async function createTreino(novoTreino) {
   try{
     const response = await fetch(`${API_URL}/training`, {
@@ -49,6 +50,7 @@ export async function createTreino(novoTreino) {
   }
 };
 
+// EDITA TREINO
 export async function updateTreino(atualTreino) {
   try{
     const response = await fetch(`${API_URL}/training/${atualTreino.id}`, {
@@ -67,6 +69,7 @@ export async function updateTreino(atualTreino) {
   }
 };
 
+// DELETA TREINO
 export async function deleteTreino(atualTreino) {
   try{
     const response = await fetch(`${API_URL}/training/${atualTreino.id}`, {
