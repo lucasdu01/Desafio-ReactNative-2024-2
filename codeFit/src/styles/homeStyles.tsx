@@ -58,18 +58,4 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
   },
-  cardTreinoPrincipal: {
-    width: 130,
-    height: 150,
-    borderRadius: 25,
-    marginBottom: 20,
-  },
-  cardTreinoSec: {
-    width: 100,
-    height: 125,
-    borderRadius: 25,
-    marginBottom: 20,
-    opacity: 0.6,
-  },
-
 });

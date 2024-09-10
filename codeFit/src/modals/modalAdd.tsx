@@ -1,42 +1,44 @@
 import React, { useState } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
-
+import { createTreino } from '../services/treinoServices';
 import { styles } from '../styles/modalStyles';
 
 type ModalAddProps = {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  onTreinoAdicionado: (novoTreino: any) => void;
 };
 
-export default function ModalAdd({ modalVisible, setModalVisible }: ModalAddProps) {
+export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicionado }: ModalAddProps) {
   const [tipo, setTipo] = useState('');
   const [carga, setCarga] = useState('');
-  const [repet, setRepet] = useState('');
+  const [repeticoes, setRepeticoes] = useState('');
   const [tempo, setTempo] = useState('');
   const [video, setVideo] = useState('');
 
-  const criarTreino = () => {
+  const criarTreino = async () => {
     const novoTreino = {
       type: tipo,
       weight: carga,
-      repetitions: repet,
+      repetitions: repeticoes,
       time: tempo,
       du_user_id: 1,
     };
-
-    fetchCreate(novoTreino);
+    try {
+      await createTreino(novoTreino);
+      await onTreinoAdicionado(novoTreino);
+      setTipo('');
+      setCarga('');
+      setRepeticoes('');
+      setTempo('');
+      setVideo('');
+      setModalVisible(false);  
+    } catch (error) {
+      alert('Falha ao criar treino. Tente novamente.');
+      console.error('Erro ao criar treino:', error.message || error);
+    }
   };
   
-  const fetchCreate = async (novoTreino) => {
-    const response = await fetch('https://treinamentoapi.codejr.com.br/api/du/training', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(novoTreino),
-    });  
-  };
-
   return (
     <Modal
       transparent={true}
@@ -71,7 +73,7 @@ export default function ModalAdd({ modalVisible, setModalVisible }: ModalAddProp
           <View style={styles.inputRow}>
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Repetições:</Text>
-              <TextInput style={styles.input} placeholder="Digite as repetições" value={repet} onChangeText={text => setRepet(text)}/>
+              <TextInput style={styles.input} placeholder="Digite as repetições" value={repeticoes} onChangeText={text => setRepeticoes(text)}/>
             </View>
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Tempo:</Text>

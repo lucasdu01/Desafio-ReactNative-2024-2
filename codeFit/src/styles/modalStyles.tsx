@@ -57,7 +57,6 @@ export const styles = StyleSheet.create({
   alertContainer: {
     flexDirection: 'column',
     alignItems: 'center',
-    marginVertical: 20,
   },
   alertIcon: {
     width: 100,
@@ -66,16 +65,17 @@ export const styles = StyleSheet.create({
   },
   alertText: {
     fontSize: 16,
-    color: '#800080', // Roxo
+    color: '#3B1B4D',
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginVertical: 10,
+    justifyContent: 'space-between',
+    width: '70%',
+    marginTop: 10,
+    marginBottom: 20,
   },
   yesButton: {
-    backgroundColor: '#00FF00', // Verde
+    backgroundColor: '#00FF00',
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   noButton: {
-    backgroundColor: '#FF0000', // Vermelho
+    backgroundColor: '#FF0000',
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -111,4 +111,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
   },
+  textVideo: {
+    color: 'red',
+    textDecorationLine: 'underline',
+  }
 });

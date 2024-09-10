@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#6E028C',
   },
   button: {
-    width: '50%',
+    width: '60%',
     height: 80,
     backgroundColor: '#FFCE07',
     justifyContent: 'center',
@@ -42,9 +42,32 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
+    padding: 10,
     fontSize: 40,
     color: '#3B1B4D',
     fontWeight: 'bold',
+  },
+  passwordContainer: {
+    flexDirection: 'row', // Alinha os itens horizontalmente
+    alignItems: 'center',
+    width: '80%',
+    height: 40,
+    borderColor: '#FFCE07',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 20,
+    paddingLeft: 10,
+    color: 'white',
+    backgroundColor: '#6E028C',
+  },
+  inputSenha: {
+    width: '90%',
+    color: '#FFF',
+  },
+  eyeIcon: {
+    width: 24,
+    height: 24,
+    tintColor: '#FFCE07'
   },
 });
   

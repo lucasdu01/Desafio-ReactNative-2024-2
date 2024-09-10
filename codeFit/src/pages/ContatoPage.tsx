@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { styles } from '../styles/contatoStyles';
-
 import TopBar from '../components/TopBar';
+
+const openLink = (url) => {
+  Linking.openURL(url).catch(err => console.error("Erro ao abrir URL:", err));
+};
 
 export default function ContactScreen() {
   return (
@@ -30,11 +33,26 @@ export default function ContactScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Redes Sociais</Text>
         <View style={styles.socialMediaContainer}>
-          <Image source={require('../../assets/images/iconsContato/iconLinkedin.png')} style={styles.socialIcon} />
-          <Image source={require('../../assets/images/iconsContato/iconInstagram.png')} style={styles.socialIcon} />
-          <Image source={require('../../assets/images/iconsContato/iconFacebook.png')} style={styles.socialIcon} />
-          <Image source={require('../../assets/images/iconsContato/iconTwitter.png')} style={styles.socialIcon} />
-          <Image source={require('../../assets/images/iconsContato/iconWhatsApp.png')} style={styles.socialIcon} />
+
+          <TouchableOpacity onPress={ () => openLink('https://www.linkedin.com/company/codejr')}>
+            <Image source={require('../../assets/images/iconsContato/iconLinkedin.png')} style={styles.socialIcon} />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => openLink('https://www.instagram.com/codejr')}>
+            <Image source={require('../../assets/images/iconsContato/iconInstagram.png')} style={styles.socialIcon} />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => openLink('https://www.facebook.com/codeempresajunior')}>
+            <Image source={require('../../assets/images/iconsContato/iconFacebook.png')} style={styles.socialIcon} />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => openLink('https://www.twitter.com')}>
+            <Image source={require('../../assets/images/iconsContato/iconTwitter.png')} style={styles.socialIcon} />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => openLink('https://w.app/codefit')}>
+            <Image source={require('../../assets/images/iconsContato/iconWhatsApp.png')} style={styles.socialIcon} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

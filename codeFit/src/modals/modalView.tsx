@@ -1,22 +1,27 @@
 import React from 'react';
-import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
-
+import { Modal, View, Text, TextInput, TouchableOpacity, Linking } from 'react-native';
 import { styles } from '../styles/modalStyles';
+
+const openLink = (url) => {
+  Linking.openURL(url).catch(err => console.error("Erro ao abrir URL:", err));
+};
 
 type ModalViewProps = {
   modalVisible: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  treino: any;
 };
 
 
-export default function ModalView({ modalVisible, setModalVisible }: ModalViewProps) {
+export default function ModalView({ modalVisible, setModalVisible, treino }: ModalViewProps) {
+  if (!treino) {
+    return null; // Não renderize o modal se `treino` for inválido
+  }
   return (
     <Modal
       transparent={true}
       visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
+      onRequestClose={() => {setModalVisible(!modalVisible)}}
     >
     <View style={styles.modalBackground}>
       <View style={styles.modalLayout}>
@@ -32,11 +37,11 @@ export default function ModalView({ modalVisible, setModalVisible }: ModalViewPr
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Tipo:</Text>
-            <TextInput style={styles.input} placeholder="Digite o tipo" />
+            <TextInput style={styles.input} placeholder={treino.tipo}/>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Carga:</Text>
-            <TextInput style={styles.input} placeholder="Digite a carga" />
+            <TextInput editable={false} style={styles.input} placeholder={treino.carga}/>
           </View>
         </View>
         
@@ -44,18 +49,19 @@ export default function ModalView({ modalVisible, setModalVisible }: ModalViewPr
         <View style={styles.inputRow}>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Repetições:</Text>
-            <TextInput style={styles.input} placeholder="Digite as repetições" />
+            <TextInput editable={false} style={styles.input} placeholder={treino.repeticoes}/>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Tempo:</Text>
-            <TextInput style={styles.input} placeholder="Digite o tempo" />
+            <TextInput editable={false} style={styles.input} placeholder={treino.tempo}/>
           </View>
         </View>
         
         {/* Vídeo */}
         <View style={styles.videoContainer}>
-          <Text style={styles.label}>Vídeo:</Text>
-
+          <TouchableOpacity onPress={() => openLink('https://www.youtube.com/watch?v=NN99hUNwO1A&ab_channel=RenatoCariani')}>
+            <Text style={styles.textVideo}> Clique aqui para assistir a vídeo aula </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
