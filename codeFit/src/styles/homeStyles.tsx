@@ -58,4 +58,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
   },
+  treinoDisponiveisContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cardTreinoDisponiveis: {
+    marginHorizontal: 15,
+    width: 80,
+    height: 80,
+  },
+  cardTreinoDisponiveisText: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+  }
 });

@@ -1,10 +1,8 @@
-// LoginScreen.js
-
 import React, { useState } from 'react';
 import { Text, View, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
-import { styles } from '../styles/loginStyles';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { styles } from '../styles/loginStyles';
 import { verificaExisteUser } from '../services/userServices';
 
 type TabParamList = {

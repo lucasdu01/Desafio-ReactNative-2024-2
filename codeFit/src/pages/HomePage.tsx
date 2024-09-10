@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from '../styles/homeStyles';
 import { getTreinos } from '../services/treinoServices';
 import { useFocusEffect } from '@react-navigation/native';
@@ -53,7 +53,19 @@ export default function Home() {
 
         <View>
           <Text style={styles.sectionTitle}>Treinos Disponíveis</Text>
-          <Image source={require('../../assets/images/iconsHome/CardTreino.png')} style={styles.cardTreino} />
+          <FlatList
+            data={treinos}
+            horizontal={true}
+            
+            renderItem={({ item }) => (
+              <View style={styles.treinoDisponiveisContainer}>
+                <TouchableOpacity onPress={() => { setTreinoSelecionado(item); setVisibleModalView(true); }}>
+                  <Image source={require('../../assets/images/iconsHome/CardTreino.png')} style={styles.cardTreinoDisponiveis} />
+                  <Text style={styles.cardTreinoDisponiveisText}>{item.tipo}</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          />          
         </View>
 
         <ModalView
@@ -61,6 +73,7 @@ export default function Home() {
           setModalVisible={setVisibleModalView}
           treino={treinoSelecionado}
         />
+
       </ScrollView>
     </View>
   );

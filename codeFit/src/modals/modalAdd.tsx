@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { createTreino } from '../services/treinoServices';
 import { styles } from '../styles/modalStyles';
+import { createTreino } from '../services/treinoServices';
+
 
 type ModalAddProps = {
   modalVisible: boolean;

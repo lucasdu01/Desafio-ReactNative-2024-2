@@ -19,7 +19,7 @@ export async function getUser() {
   }  
 };
 
-// Simulando um serviço de autenticação
+// Autentica o usuario
 export const verificaExisteUser = async (email: string, senha: string) => {
     const user = await getUser();
 
