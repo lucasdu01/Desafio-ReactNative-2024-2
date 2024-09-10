@@ -49,41 +49,43 @@ export default function ModalDelete({ modalVisible, setModalVisible, treino, onT
                 <View style={styles.alertContainer}>
                     <Image source={require("../../assets/images/imgAlerta.png")} style={styles.alertIcon}/>
                     <Text style={styles.modalTitle}>Excluir Treino</Text>
-                    <Text style={styles.alertText}> {`Realmente deseja excluir o treino ${treino.tipo}`} </Text>
-                </View>
-
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.yesButton} onPress={handleDelete}>
-                        <Text style={styles.yesButtonText}>SIM</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.noButton} onPress={() => setModalVisible(false)}>
-                        <Text style={styles.noButtonText}>NÃO</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <Text style={styles.textStyle}>Ao clicar em "SIM" os seguintes dados serão perdidos:</Text>
+                    <Text style={styles.alertText}> {`Realmente deseja excluir o treino ${treino.tipo} ?`} </Text>
                 
-                {/* Tipo e Carga*/}
-                <View style={styles.inputRow}>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Tipo:</Text>
-                        <TextInput style={styles.input} placeholder={treino.tipo} />
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Carga:</Text>
-                        <TextInput style={styles.input} placeholder={treino.carga} />
+
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.yesButton} onPress={handleDelete}>
+                            <Text style={styles.yesButtonText}>SIM</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.noButton} onPress={() => setModalVisible(false)}>
+                            <Text style={styles.noButtonText}>NÃO</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
-        
-                {/* Repeticoes e Tempo*/}
-                <View style={styles.inputRow}>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Repetições:</Text>
-                        <TextInput style={styles.input} placeholder={treino.repeticoes} />
+                <View>
+                    <Text style={styles.textStyle}>Ao clicar em "SIM" os seguintes dados serão perdidos:</Text>
+                    
+                    {/* Tipo e Carga*/}
+                    <View style={styles.inputRow}>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.label}>Tipo:</Text>
+                            <TextInput style={styles.input} placeholder={treino.tipo} />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.label}>Carga:</Text>
+                            <TextInput style={styles.input} placeholder={treino.carga} />
+                        </View>
                     </View>
-                    <View style={styles.inputContainer}>
-                        <Text style={styles.label}>Tempo:</Text>
-                        <TextInput style={styles.input} placeholder={treino.tempo} />
+            
+                    {/* Repeticoes e Tempo*/}
+                    <View style={styles.inputRow}>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.label}>Repetições:</Text>
+                            <TextInput style={styles.input} placeholder={treino.repeticoes} />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.label}>Tempo:</Text>
+                            <TextInput style={styles.input} placeholder={treino.tempo} />
+                        </View>
                     </View>
                 </View>
         </View>
