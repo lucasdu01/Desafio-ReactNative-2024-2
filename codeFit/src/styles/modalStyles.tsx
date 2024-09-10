@@ -111,4 +111,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
   },
+  textVideo: {
+    color: 'red',
+    textDecorationLine: 'underline',
+  }
 });

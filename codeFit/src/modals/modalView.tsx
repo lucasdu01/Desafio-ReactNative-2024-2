@@ -1,7 +1,10 @@
 import React from 'react';
-import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
-
+import { Modal, View, Text, TextInput, TouchableOpacity, Linking } from 'react-native';
 import { styles } from '../styles/modalStyles';
+
+const openLink = (url) => {
+  Linking.openURL(url).catch(err => console.error("Erro ao abrir URL:", err));
+};
 
 type ModalViewProps = {
   modalVisible: boolean;
@@ -56,8 +59,9 @@ export default function ModalView({ modalVisible, setModalVisible, treino }: Mod
         
         {/* Vídeo */}
         <View style={styles.videoContainer}>
-          <Text style={styles.label}>Vídeo:</Text>
-
+          <TouchableOpacity onPress={() => openLink('https://www.youtube.com/watch?v=NN99hUNwO1A&ab_channel=RenatoCariani')}>
+            <Text style={styles.textVideo}> Clique aqui para assistir a vídeo aula </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

@@ -31,6 +31,7 @@ export default function ModalAdd({ modalVisible, setModalVisible, onTreinoAdicio
       setCarga('');
       setRepeticoes('');
       setTempo('');
+      setVideo('');
       setModalVisible(false);  
     } catch (error) {
       alert('Falha ao criar treino. Tente novamente.');

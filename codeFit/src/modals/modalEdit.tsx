@@ -23,6 +23,7 @@ export default function ModalEdit({ modalVisible, setModalVisible, treino, onTre
       setCarga(treino.carga || '');
       setRepeticoes(treino.repeticoes || '');
       setTempo(treino.tempo || '');
+      setVideo(video || '');
     }
   }, [treino]);
 
@@ -87,10 +88,11 @@ export default function ModalEdit({ modalVisible, setModalVisible, treino, onTre
           </View>
         </View>
             
-        {/* Vídeo */}
-        <View style={styles.videoContainer}>
-          <Text style={styles.label}>Vídeo:</Text>
-        </View>
+          {/* Video */}
+          <View style={styles.videoContainer}>
+            <Text style={styles.label}>Vídeo:</Text>
+            <TextInput style={styles.input} placeholder="Url do video"/>
+          </View>
 
         {/* Botão Confirmar*/}
         <View>
